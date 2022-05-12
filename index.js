@@ -1,6 +1,7 @@
 const redux = require('redux');
 const createStore = redux.legacy_createStore;
 const BUY_CAKE = 'BUY_CAKE';
+const BUY_ICE_CREAM = 'BUY_ICE_CREAM';
 
 //action creator
 
@@ -11,9 +12,16 @@ const buyCake = () => {
 	};
 };
 
+const buyIceCreams = () => {
+	return {
+		type: BUY_ICE_CREAM,
+	};
+};
+
 //initial state
 const initialState = {
 	numOfCakes: 10,
+	numOfIceCreams: 20,
 };
 
 //reducer
@@ -30,6 +38,12 @@ const reducer = (
 				numOfCakes: state.numOfCakes - 1,
 			};
 
+		case BUY_ICE_CREAM:
+			return {
+				...state,
+				numOfIceCreams: state.numOfIceCreams - 1,
+			};
+
 		default:
 			return state;
 	}
@@ -44,4 +58,7 @@ const unsubscribe = store.subscribe(() => {
 store.dispatch(buyCake());
 store.dispatch(buyCake());
 store.dispatch(buyCake());
+store.dispatch(buyIceCreams());
+store.dispatch(buyIceCreams());
+
 unsubscribe();
